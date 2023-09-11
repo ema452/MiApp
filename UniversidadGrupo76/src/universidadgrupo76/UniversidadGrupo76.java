@@ -5,7 +5,12 @@
  */
 package universidadgrupo76;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
+import universidadgrupo76.AccesoADatos.AlumnoData;
 import universidadgrupo76.AccesoADatos.Conexion;
+import universidadgrupo76.entidades.Alumno;
 
 /**
  *
@@ -16,9 +21,11 @@ public class UniversidadGrupo76 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        Conexion.getConexion();
+        Alumno juan = new Alumno(12312312,"luna","pedro",LocalDate.of(1980,4,25),true);
+        AlumnoData alu=new AlumnoData();
+        alu.guardarAlumno(juan);
     }
     
 }
