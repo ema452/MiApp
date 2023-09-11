@@ -5,6 +5,8 @@
  */
 package universidadgrupo76;
 
+import universidadgrupo76.AccesoADatos.Conexion;
+
 /**
  *
  * @author Fernandez
@@ -16,6 +18,7 @@ public class UniversidadGrupo76 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Conexion.getConexion();
     }
     
 }
