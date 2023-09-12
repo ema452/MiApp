@@ -23,9 +23,11 @@ public class UniversidadGrupo76 {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        Alumno juan = new Alumno(12312312,"luna","pedro",LocalDate.of(1980,4,25),true);
+        Alumno juan = new Alumno(12,12312312,"Guzman","Gabriel",LocalDate.of(1980,4,25),true);
         AlumnoData alu=new AlumnoData();
-        alu.guardarAlumno(juan);
+        //alu.guardarAlumno(juan);
+        //alu.modificarAlumno(juan);
+       // alu.eliminarAlumno(12);
     }
     
 }
