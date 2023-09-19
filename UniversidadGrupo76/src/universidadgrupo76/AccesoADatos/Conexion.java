@@ -41,7 +41,6 @@ public class Conexion {
         try {
             // Setup the connection with the DB
             con = DriverManager.getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
-            
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion ");
             ex.printStackTrace();
