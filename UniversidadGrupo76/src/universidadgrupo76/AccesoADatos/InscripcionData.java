@@ -49,7 +49,7 @@ public class InscripcionData {
     }
 
     public void modificarNota(int idAlumno, int idMateria, double nota) {
-        String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria=? ";
+        String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria=?";
         try (Connection conn = Conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
@@ -160,6 +160,30 @@ public class InscripcionData {
         }
         return materias;
     }
+    public List<Materia> obtenernotaCursadas(int idAlumno) {
+
+        ArrayList<Materia> materias = new ArrayList<>();
+
+        String sql = "SELECT inscripcion.idMateria , nombre,nota FROM inscripcion,materia WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno=?;";
+        Connection conn = Conexion.getConexion();
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Materia materia=new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getNString("nombre"));
+                materia.setAno(rs.getInt("nota"));
+                materias.add(materia);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR al acceder a la tabla ionscripcion");
+
+        }
+        return materias;
+    }
     public List<Materia> obtenerMAteriasNoCursadas(int idAlumno){
                 ArrayList<Materia> materias = new ArrayList<>();
 
@@ -211,5 +235,33 @@ public class InscripcionData {
             
         return alumnos;
        }
-       
+     public List<Alumno> obtenerAlumnosXMateria1(){
+            ArrayList<Alumno> alumnos=new ArrayList<>();
+            String sql = "SELECT DISTINCT a.idAlumno, dni,nombre,apellido ,fechaNacimiento,estado FROM inscripcion i,alumno a WHERE i.idAlumno = a.idAlumno AND a.estado=1;";
+        Connection conn = Conexion.getConexion();
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Alumno alumno=new Alumno();
+               alumno.setIdAlumno(rs.getInt("idAlumno"));
+               alumno.setDni(rs.getInt("dni"));
+               alumno.setNombre(rs.getString("nombre"));
+               alumno.setApellido(rs.getString("apellido"));
+                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());;
+                alumno.setEstado(rs.getBoolean("estado"));
+                alumnos.add(alumno);
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR al acceder a la tabla ionscripcion");
+        }
+            
+            
+            
+        return alumnos;
+       }
+
 }

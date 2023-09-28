@@ -68,7 +68,7 @@ public class AlumnoData {
     }
     
     public void eliminarAlumno(int id){
-        String sql="UPDATE alumno SET estado = 1 WHERE idAlumno = ?";
+        String sql="UPDATE alumno SET estado = 0 WHERE idAlumno = ?";
         
         Connection conn = Conexion.getConexion();
         try {
@@ -76,7 +76,7 @@ public class AlumnoData {
             ps.setInt(1, id);
             int exito=ps.executeUpdate();
             if(exito == 1){
-            JOptionPane.showMessageDialog(null, "Alumno activado");
+            JOptionPane.showMessageDialog(null, "Alumno eliminado");
             }
         } catch (SQLException ex) {
      JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");

@@ -31,6 +31,12 @@ public class Inscripcion {
         this.nota = nota;
     }
 
+    public Inscripcion(int idTabla, int idSeleccionado, int valor) {
+        this.alumno = alumno;
+        this.materia = materia;
+        this.nota = nota;
+    }
+
     public int getIdInscripcion() {
         return idInscripcion;
     }

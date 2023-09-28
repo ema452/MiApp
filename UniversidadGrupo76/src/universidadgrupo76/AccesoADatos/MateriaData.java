@@ -57,7 +57,7 @@ public class MateriaData {
                 materia.setAno(rs.getInt("ano"));
                 materia.setEstado(true);;
             } else {
-                JOptionPane.showMessageDialog(null, "no existe un alumno con ese id");
+                JOptionPane.showMessageDialog(null, "No exite ninguna materia con ese codigo");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -116,9 +116,7 @@ public class MateriaData {
               
             
             int exito = ps.executeUpdate();
-            if (exito==1) {
-                JOptionPane.showMessageDialog(null,"Materia  modificada");
-            }
+         
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia");
 
